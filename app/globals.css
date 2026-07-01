@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+/* Personal Manager — calm, dark-first, mobile-first design tokens.
+   One-glance legibility and big tap targets are the priority. */
+
+:root {
+  --background: #0b0d10;
+  --surface: #14171c;
+  --surface-2: #1c2129;
+  --border: #262c35;
+  --foreground: #e8eaed;
+  --muted: #9aa3af;
+  --faint: #6b7480;
+
+  --accent: #6ee7b7; /* good / progress */
+  --accent-ink: #04140d;
+  --warn: #fbbf24; /* nag */
+  --danger: #f87171; /* broken / reset */
+  --info: #7dd3fc; /* work / neutral action */
+
+  --radius: 16px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #f6f7f8;
+    --surface: #ffffff;
+    --surface-2: #f0f2f4;
+    --border: #e2e6ea;
+    --foreground: #14171c;
+    --muted: #5b6470;
+    --faint: #8a929c;
+
+    --accent: #059669;
+    --accent-ink: #ffffff;
+    --warn: #b45309;
+    --danger: #dc2626;
+    --info: #0369a1;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-warn: var(--warn);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Reusable surface + control primitives so screens stay consistent. */
+@layer components {
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    padding: 0.65rem 1.1rem;
+    min-height: 2.75rem;
+    transition: filter 0.15s ease, opacity 0.15s ease;
+    cursor: pointer;
+    user-select: none;
+  }
+  .btn:active {
+    filter: brightness(0.9);
+  }
+  .btn-accent {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+  .btn-surface {
+    background: var(--surface-2);
+    color: var(--foreground);
+    border: 1px solid var(--border);
+  }
+  .input {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.6rem 0.8rem;
+    color: var(--foreground);
+    width: 100%;
+    outline: none;
+  }
+  .input:focus {
+    border-color: var(--muted);
+  }
+}
